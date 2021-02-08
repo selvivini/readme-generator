@@ -6,6 +6,11 @@ const generateMarkdown = require('./util/generateMarkdown');
 // TODO: Create an array of questions for user input
 const questions = [
     {
+        type: 'input',
+        name: 'username',
+        message: 'What is your github username?'
+    },
+    {
     type: 'input',
     name: 'title',
     default: 'Project Title',
@@ -20,25 +25,31 @@ const questions = [
      
      {
       type: 'input',
-      name: 'Installation Instructions',
+      name: 'Installation',
       message: 'describe the steps required for project installation?'
      },
      {
       type: 'input',
-      name: 'usage information',
+      name: 'usage',
       message: 'can u provide details of your project for the users to understand better?'
      },
      {
          type: 'input',
-         name: 'Contribution Guidelines',
+         name: 'Contribution',
          message: 'Provide guidelines on how other developers can contribute to this project if needed?'
 
      },
      {
          type: 'input',
-         name: 'Testing instructions',
+         name: 'Testing',
          message: 'how do you run tests for this project?'
-     }
+     },
+     {
+        type: 'list',
+        message: "Choose a license for your project.",
+        choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense','none'],
+        name: 'license'
+    }  
 ];
 
 // TODO: Create a function to write README file
@@ -52,8 +63,10 @@ fs.writeFile(fileName, data, err=> err? console.log(err): console.log('success! 
 function init() {
     try{
  inquirer.prompt(questions).then(data=>{
-     console.log(data);
-     
+   
+   const fileName = generateMarkdown(data.title);
+    console.log(fileName)
+    writeToFile(fileName, data)
  })
     } catch(error){
         console.log(error)
