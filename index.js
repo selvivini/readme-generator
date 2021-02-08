@@ -47,9 +47,15 @@ const questions = [
      {
         type: 'list',
         message: "Choose a license for your project.",
-        choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense','none'],
+        choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
         name: 'license'
-    }  
+    },
+    {
+        type: 'Input',
+        message: 'What is your email?',
+        name:'email'
+
+    }
 ];
 
 // TODO: Create a function to write README file
@@ -63,10 +69,8 @@ fs.writeFile(fileName, data, err=> err? console.log(err): console.log('success! 
 function init() {
     try{
  inquirer.prompt(questions).then(data=>{
-   
-   const fileName = generateMarkdown(data.title);
-    console.log(fileName)
-    writeToFile(fileName, data)
+   const readme = generateMarkdown(data);
+    writeToFile("Readme.md",readme, data)
  })
     } catch(error){
         console.log(error)
