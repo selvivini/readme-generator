@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./util/generateMarkdown');
 
+
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -47,7 +48,7 @@ const questions = [
      {
         type: 'list',
         message: "Choose a license for your project.",
-        choices: ["Apache-2.0", "BSD-3-Clause", "BSD-2-Clause", "gpl-license","lgpl-license","MIT","MPL-2.0","CDDL-1.0","EPL-2.0","none"],
+        choices: ["MIT","Apache-2.0", "BSD-3-Clause", "BSD-2-Clause", "gpl-license","lgpl-license","MPL-2.0","EPL-2.0"],
         name: 'license'
     },
     {
@@ -61,7 +62,8 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
 fs.writeFile(fileName, data, err=> err? console.log(err): console.log('success! your readme file is generated')
-       
+
+      
 )
 }
 
@@ -69,9 +71,11 @@ fs.writeFile(fileName, data, err=> err? console.log(err): console.log('success! 
 function init() {
     try{
  inquirer.prompt(questions).then(data=>{
-   const readme = generateMarkdown(data);
+   const readme = generateMarkdown.generateMarkDown(data)
+   const badge  = generateMarkdown.renderLicenseBadge(data)
    const fileName = `${data.title.toLowerCase().split(" ").join("")}.md`
-    writeToFile(fileName,readme)
+
+    writeToFile(fileName,readme,badge)
  })
     } catch(error){
         console.log(error)
