@@ -57,3 +57,9 @@ If you have any questions please reach out to me
 [video link](https://drive.google.com/file/d/1m4B3lJYvoBCE-mIMUbkF9K9QvqT_oeuk/view)
 
 # Mockup
+![Questions](Assets/mockup1.PNG)
+![readmegenerated](Assets/mockup2.PNG)
+
+
+
+Check out the good-readme-generator file as an example file generated using this app

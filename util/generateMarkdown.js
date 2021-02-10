@@ -45,8 +45,7 @@ function renderLicenseSection(license) {
 function generateMarkdown(data) {
   // renderLicenseBadge(data)
   return `# ${data.title}
-  ![License](https://img.shields.io/badge/Licence-${data.license}-green)
-  ${renderLicenseBadge(data)}
+   ${renderLicenseBadge(data)}
   ## Description
     ${data.description}
 
